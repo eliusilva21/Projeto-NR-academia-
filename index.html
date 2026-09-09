@@ -174,21 +174,66 @@
       </section>
 
       <section class="inspiration-section" aria-labelledby="inspiration-title">
-        <div class="container inspiration-grid">
-          <div class="inspiration-photo">
-            <img src="images/Vitor Chaves.png" alt="Vitor Chaves segurando a medalha no painel da NR Academia" />
+        <div class="container inspiration-cards">
+          <div class="inspiration-grid">
+            <div class="inspiration-photo">
+              <img src="images/Vitor Chaves.png" alt="Vitor Chaves segurando a medalha no painel da NR Academia" />
+            </div>
+            <div class="inspiration-copy">
+              <h2 id="inspiration-title">Homenagem a Vitor Chaves</h2>
+              <p class="inspiration-credit">
+                — <strong>Vitor Chaves</strong> <em>(Atleta Olympia, Tetracampeão Pro e Homenageado NR Academia)</em>
+              </p>
+              <p class="inspiration-description">
+                Nesta data, a NR Academia teve a honra de receber o atleta detentor de mais de 50 títulos conquistados.
+              </p>
+              <div class="inspiration-like-row">
+                <button class="inspiration-like" type="button" aria-label="Curtir homenagem" aria-pressed="false">
+                  <span aria-hidden="true">♡</span>
+                </button>
+                <span class="inspiration-like-count" aria-live="polite">0</span>
+              </div>
+            </div>
           </div>
-          <div class="inspiration-copy">
-            <p class="inspiration-badge">Inspiração &amp; Homenagem</p>
-            <h2 id="inspiration-title">
-              A constância supera qualquer obstáculo. Onde existe disciplina, o resultado é inevitável.
-            </h2>
-            <p class="inspiration-credit">
-              — <strong>Vitor Chaves</strong> <em>(Atleta Olympia, Tetracampeão Pro e Homenageado NR Academia)</em>
-            </p>
-            <p class="inspiration-description">
-              Nesta data, a NR Academia teve a honra de receber o atleta detentor de mais de 50 títulos conquistados.
-            </p>
+          <div class="inspiration-grid">
+            <div class="inspiration-photo">
+              <img src="images/Vitor Chaves.png" alt="Vitor Chaves segurando a medalha no painel da NR Academia" />
+            </div>
+            <div class="inspiration-copy">
+              <h2>Homenagem a Vitor Chaves</h2>
+              <p class="inspiration-credit">
+                — <strong>Vitor Chaves</strong> <em>(Atleta Olympia, Tetracampeão Pro e Homenageado NR Academia)</em>
+              </p>
+              <p class="inspiration-description">
+                Nesta data, a NR Academia teve a honra de receber o atleta detentor de mais de 50 títulos conquistados.
+              </p>
+              <div class="inspiration-like-row">
+                <button class="inspiration-like" type="button" aria-label="Curtir homenagem" aria-pressed="false">
+                  <span aria-hidden="true">♡</span>
+                </button>
+                <span class="inspiration-like-count" aria-live="polite">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="inspiration-grid">
+            <div class="inspiration-photo">
+              <img src="images/Vitor Chaves.png" alt="Vitor Chaves segurando a medalha no painel da NR Academia" />
+            </div>
+            <div class="inspiration-copy">
+              <h2>Homenagem a Vitor Chaves</h2>
+              <p class="inspiration-credit">
+                — <strong>Vitor Chaves</strong> <em>(Atleta Olympia, Tetracampeão Pro e Homenageado NR Academia)</em>
+              </p>
+              <p class="inspiration-description">
+                Nesta data, a NR Academia teve a honra de receber o atleta detentor de mais de 50 títulos conquistados.
+              </p>
+              <div class="inspiration-like-row">
+                <button class="inspiration-like" type="button" aria-label="Curtir homenagem" aria-pressed="false">
+                  <span aria-hidden="true">♡</span>
+                </button>
+                <span class="inspiration-like-count" aria-live="polite">0</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -299,6 +344,7 @@
       const menuClose = document.querySelector(".menu-close");
       const menuBackdrop = document.querySelector(".menu-backdrop");
       const whatsappFloat = document.querySelector(".whatsapp-float");
+      const inspirationLikes = document.querySelectorAll(".inspiration-like");
 
       function closeMobileMenu() {
         navWrap.classList.remove("menu-open");
@@ -335,6 +381,17 @@
       window.addEventListener("scroll", updateNavigationVisibility, { passive: true });
       window.addEventListener("resize", updateNavigationVisibility);
       updateNavigationVisibility();
+
+      inspirationLikes.forEach((inspirationLike) => {
+        inspirationLike.addEventListener("click", () => {
+          const isLiked = inspirationLike.getAttribute("aria-pressed") === "true";
+          inspirationLike.setAttribute("aria-pressed", String(!isLiked));
+          inspirationLike.setAttribute("aria-label", isLiked ? "Curtir homenagem" : "Descurtir homenagem");
+          inspirationLike.querySelector("span").textContent = isLiked ? "♡" : "♥";
+          const likeCount = inspirationLike.parentElement.querySelector(".inspiration-like-count");
+          likeCount.textContent = String(Number(likeCount.textContent) + (isLiked ? -1 : 1));
+        });
+      });
 
       const fadeUpSections = document.querySelectorAll("[data-fade-up]");
       const fadeUpObserver = new IntersectionObserver(

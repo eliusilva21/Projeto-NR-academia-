@@ -21,6 +21,8 @@
   --container: 1180px;
 }
 
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,7 +35,7 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background: #0f1114;
+  background: #000;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
@@ -149,8 +151,8 @@ img {
   display: block;
   width: auto;
   max-height: 58px;
-  object-fit: contain;
-  border-radius: 18px;
+  object-fit: cover;
+  border-radius: 24px;
   overflow: hidden;
   filter: drop-shadow(0 6px 18px rgba(40, 215, 255, 0.16));
 }
@@ -202,10 +204,10 @@ img {
 }
 
 .main-nav .login-btn {
-  padding: 18px 30px;
+  padding: 16px 26px;
   color: #071014;
   background: linear-gradient(135deg, #d6d6d6, #9f9f9f);
-  border-radius: 999px;
+  border-radius: 14px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
   font-weight: 800;
 }
@@ -214,6 +216,18 @@ img {
   .main-nav .login-btn {
     order: 5;
     margin: 0;
+  }
+
+  .inspiration-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .inspiration-grid {
+    width: min(100%, 300px);
+    margin-left: 32px;
+    margin-right: auto;
   }
 }
 
@@ -343,6 +357,7 @@ img {
     transform: none;
     transition: none;
   }
+
 }
 
 .primary-btn {
@@ -361,11 +376,11 @@ img {
 
 .inspiration-section {
   position: relative;
-  padding: 56px 0;
+  padding: 44px 0;
   overflow: hidden;
   background: #000;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 0;
+  border-bottom: 0;
 }
 
 .plans[data-fade-up] {
@@ -377,6 +392,13 @@ img {
 .plans[data-fade-up].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.plans[data-fade-up],
+.plans[data-fade-up].is-visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 .plans[data-fade-up] .plan-card {
@@ -405,16 +427,30 @@ img {
 
 .inspiration-grid {
   display: grid;
-  grid-template-columns: 2fr 3fr;
-  align-items: center;
-  gap: 64px;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.inspiration-grid:nth-child(1) .inspiration-copy,
+.inspiration-grid:nth-child(3) .inspiration-copy {
+  order: -1;
 }
 
 .inspiration-photo {
-  height: 420px;
+  aspect-ratio: 1;
+  height: auto;
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0, 174, 239, 0.1);
+  border-radius: 24px;
+  background: #000;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.06);
 }
 
 .inspiration-photo img {
@@ -422,15 +458,20 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   border-radius: 0;
 }
 
 .inspiration-copy {
   width: 100%;
-  max-width: 720px;
+  max-width: none;
   position: relative;
-  top: -40px;
+  top: 0;
+  padding: 28px;
+  background: #0f1114;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .inspiration-badge {
@@ -444,7 +485,7 @@ img {
 }
 
 .inspiration-copy h2 {
-  color: var(--text);
+  color: #fff;
   font-size: clamp(1.9rem, 3.2vw, 2.8rem);
   font-weight: 600;
   line-height: 1.15;
@@ -453,12 +494,12 @@ img {
 
 .inspiration-credit {
   margin-top: 28px;
-  color: #a1a1aa;
+  color: #d1d5db;
   font-size: 1.1rem;
 }
 
 .inspiration-credit strong {
-  color: var(--text);
+  color: #fff;
   font-weight: 800;
 }
 
@@ -469,9 +510,57 @@ img {
 .inspiration-description {
   max-width: 620px;
   margin-top: 20px;
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+.inspiration-like {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.inspiration-like-row {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.inspiration-like span:first-child {
+  color: #fff;
+  font-size: inherit;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.inspiration-like-count {
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  margin-left: 6px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.inspiration-like:hover,
+.inspiration-like:focus-visible {
+  transform: scale(1.12);
+}
+
+.inspiration-like[aria-pressed="true"] span:first-child {
+  color: #ed4956;
 }
 
 .benefits {
@@ -599,7 +688,7 @@ img {
   width: min(100%, 900px);
   margin: 0 auto;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
+  gap: 56px;
   align-items: stretch;
 }
 
@@ -1245,7 +1334,7 @@ img {
     width: auto;
     min-height: 0;
     margin: 14px 0 8px 10px;
-    padding: 12px 20px;
+    padding: 10px 18px;
   }
 
   .hero {
@@ -1289,25 +1378,26 @@ img {
   }
 
   .inspiration-section {
-    padding: 40px 0;
+    padding: 32px 0;
   }
 
   .inspiration-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
   }
 
   .inspiration-photo,
   .inspiration-photo img {
     width: 100%;
-    height: 220px;
+    height: auto;
+    aspect-ratio: 1;
     min-height: 0;
   }
 
   .inspiration-copy {
     max-width: none;
     top: 0;
-    padding-left: 0;
+    padding: 20px;
     border-left: 0;
   }
 
@@ -1409,5 +1499,81 @@ img {
   .whatsapp-icon-image {
     width: 28px;
     height: 28px;
+  }
+}
+
+@media (min-width: 961px) {
+  .inspiration-cards {
+    grid-template-columns: repeat(3, 370px);
+    gap: 80px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inspiration-grid {
+    width: 370px;
+    margin: 0;
+  }
+
+  .inspiration-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 108px;
+    padding-bottom: 44px;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .plans {
+    border-radius: 0 0 140px 140px;
+    overflow: visible;
+  }
+
+  .horarios {
+    border-radius: 140px 140px 0 0;
+  }
+
+  .inspiration-photo {
+    width: 100%;
+    height: 330px;
+    aspect-ratio: auto;
+    background: #000;
+  }
+
+  .inspiration-photo img {
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .inspiration-copy {
+    padding: 16px;
+  }
+
+  .inspiration-copy h2 {
+    font-size: 1.2rem;
+  }
+
+  .inspiration-credit {
+    margin-top: 14px;
+    font-size: 0.85rem;
+  }
+
+  .inspiration-description {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  .inspiration-like {
+    margin-top: 0;
+    font-size: 1.6rem;
+  }
+
+  .inspiration-like-row {
+    margin-top: 14px;
   }
 }
